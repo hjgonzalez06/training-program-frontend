@@ -17,6 +17,7 @@ function App () {
   return (
     <>
       <button onClick={() => showCurrentUser()}>See current user</button>
+      <SignUp />
     </>
   )
 }
