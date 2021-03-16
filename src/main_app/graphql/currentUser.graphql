@@ -1,6 +1,8 @@
 {
   currentUser {
     id
-    firstName
+    firstName,
+    lastName,
+    email
   }
 }
