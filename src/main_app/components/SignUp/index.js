@@ -1,7 +1,7 @@
 import React from 'react'
 import { loader } from 'graphql.macro'
 import { useMutation } from '@apollo/client'
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
 import client from '../../../services/graphql/client'
@@ -51,16 +51,16 @@ const SignUp = () => {
           <Form>
             <label htmlFor="firstName">First Name</label>
             <Field name="firstName" />
-            {errors.firstName && touched.firstName ? (<div>{errors.firstName}</div>) : null}
+            <ErrorMessage name="firstName" />
             <label htmlFor="lastName">Last Name</label>
             <Field name="lastName" />
-            {errors.lastName && touched.lastName ? (<div>{errors.lastName}</div>) : null}
+            <ErrorMessage name="lastName" />
             <label htmlFor="email">Email</label>
             <Field name="email" type="email" />
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
+            <ErrorMessage name="email" />
             <label htmlFor="password">Password</label>
             <Field name="password" type="password" />
-            {errors.password && touched.password ? <div>{errors.password}</div> : null}
+            <ErrorMessage name="password" />
             <button type="submit" disabled={isSubmitting}>Submit</button>
           </Form>
         )}
