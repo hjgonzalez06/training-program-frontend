@@ -28,40 +28,44 @@ const SignUp = () => {
   })
 
   return (
-      <div>
-        <h1>Signup form</h1>
-        <Formik
-          initialValues={{
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: ''
-          }}
-          validationSchema={SignupSchema}
-          onSubmit={ (values, { setSubmitting }) => {
-            createUser({ variables: { input: values } })
+    <div>
+      <h1>Signup form</h1>
+      <Formik
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: ''
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={ async (values, { setSubmitting }) => {
+          try {
+            await createUser({ variables: { input: values } })
             setSubmitting(false)
-          }}
-        >
-          {({ isSubmitting, errors, touched }) => (
-            <Form>
-              <label htmlFor="firstName">First Name</label>
-              <Field name="firstName" />
-              {errors.firstName && touched.firstName ? (<div>{errors.firstName}</div>) : null}
-              <label htmlFor="lastName">Last Name</label>
-              <Field name="lastName" />
-              {errors.lastName && touched.lastName ? (<div>{errors.lastName}</div>) : null}
-              <label htmlFor="email">Email</label>
-              <Field name="email" type="email" />
-              {errors.email && touched.email ? <div>{errors.email}</div> : null}
-              <label htmlFor="password">Password</label>
-              <Field name="password" type="password" />
-              {errors.password && touched.password ? <div>{errors.password}</div> : null}
-              <button type="submit" disabled={isSubmitting}>Submit</button>
-            </Form>
-          )}
-        </Formik>
-      </div>
+          } catch (e) {
+            alert('Oops! Something went wrong...')
+          }
+        }}
+      >
+        {({ isSubmitting, errors, touched }) => (
+          <Form>
+            <label htmlFor="firstName">First Name</label>
+            <Field name="firstName" />
+            {errors.firstName && touched.firstName ? (<div>{errors.firstName}</div>) : null}
+            <label htmlFor="lastName">Last Name</label>
+            <Field name="lastName" />
+            {errors.lastName && touched.lastName ? (<div>{errors.lastName}</div>) : null}
+            <label htmlFor="email">Email</label>
+            <Field name="email" type="email" />
+            {errors.email && touched.email ? <div>{errors.email}</div> : null}
+            <label htmlFor="password">Password</label>
+            <Field name="password" type="password" />
+            {errors.password && touched.password ? <div>{errors.password}</div> : null}
+            <button type="submit" disabled={isSubmitting}>Submit</button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   )
 }
 
