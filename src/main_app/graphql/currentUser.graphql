@@ -2,5 +2,7 @@
   currentUser {
     id
     firstName
+    lastName
+    email
   }
 }
