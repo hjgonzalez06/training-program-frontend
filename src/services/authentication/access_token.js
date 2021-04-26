@@ -4,6 +4,6 @@ export function setAccessToken (accessToken) {
   accessToken_ = accessToken
 }
 
-export default getAccessToken () {
+export function getAccessToken () {
   return accessToken_
 }
